@@ -9,11 +9,20 @@
 return [
     '' => ['HomeController', 'index',],
     'items' => ['ItemController', 'index',],
-    'items/edit' => ['ItemController', 'edit', ['id']],
     'items/show' => ['ItemController', 'show', ['id']],
     'items/add' => ['ItemController', 'add',],
     'items/delete' => ['ItemController', 'delete',],
     'login' => ['UserController', 'login',],
     'logout' => ['UserController', 'logout',],
+//    monsite.fr/items/edit?id=5
+    'items/edit' => ['ItemController', 'edit', ['id']],
+//    monsite.fr/register
     'register' => ['UserController', 'register',],
+
+
+
+//    monsite.fr/contact?name=John&lastname=Doe
+    'contact' => ['ContactController', 'contact', ['name', 'lastname']],
+
+
 ];

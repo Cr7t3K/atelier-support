@@ -11,6 +11,12 @@ class ItemController extends AbstractController
      */
     public function index(): string
     {
+        if (!$this->user) {
+            echo 'Unauthorized access';
+            header('HTTP/1.1 401 Unauthorized');
+            exit();
+        }
+
         $itemManager = new ItemManager();
         $items = $itemManager->selectAll('title');
 
@@ -21,7 +27,7 @@ class ItemController extends AbstractController
     /**
      * Show informations for a specific item
      */
-    public function show(int $id): string
+    public function show(int $id, string $name): string
     {
         $itemManager = new ItemManager();
         $item = $itemManager->selectOneById($id);
@@ -41,7 +47,6 @@ class ItemController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $item = array_map('trim', $_POST);
-
             // TODO validations (length, format...)
 
             // if validation is ok, update and redirection
